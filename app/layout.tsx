@@ -2,8 +2,6 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Header from "./components/header";
 import Nav from "./components/nav";
-import "swiper/css";
-import "swiper/css/pagination";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="px-4">{children}</div>
+        <Header />
+        <Nav />
+        <div className="px-8">{children}</div>
       </body>
     </html>
   );
