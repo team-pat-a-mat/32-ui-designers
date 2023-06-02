@@ -71,10 +71,8 @@ export default function Slider_Nav() {
           >
             <Link
               onClick={() => handleClick(index)}
-              className={`p-2.5 cursor-pointer ${
-                activeIndex === index
-                  ? "border-black text-black"
-                  : "text-gray-300"
+              className={`cursor-pointer ${
+                activeIndex === index ? "text-black" : "text-gray-300"
               }`}
               href={slide === "accordion" ? "/" : `/${slide}`}
             >
