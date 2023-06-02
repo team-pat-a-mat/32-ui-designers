@@ -1,11 +1,11 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import { useState } from "react";
 import Link from "next/link";
+import { Mousewheel } from "swiper";
 
 export default function Slider_Nav() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const handleClick = (index: number) => {
     setActiveIndex(index);
   };
@@ -50,6 +50,7 @@ export default function Slider_Nav() {
       <Swiper
         spaceBetween={10}
         mousewheel={true}
+        modules={[Mousewheel]}
         breakpoints={{
           320: {
             slidesPerView: 2,
@@ -64,17 +65,20 @@ export default function Slider_Nav() {
       >
         {slides.map((slide, index) => (
           <SwiperSlide
+            className="text-center"
             key={index}
-            className={`p-2.5 border text-center whitespace-nowrap cursor-pointer ${
-              activeIndex === index
-                ? "border-black text-black"
-                : "text-gray-300"
-            }`}
             style={{ width: "auto" }}
-            onClick={() => handleClick(index)}
           >
-            <Link href={slide === "accordion" ? "/" : `/${slide}`}>
-              <span className="">{slide}</span>
+            <Link
+              onClick={() => handleClick(index)}
+              className={`p-2.5 cursor-pointer ${
+                activeIndex === index
+                  ? "border-black text-black"
+                  : "text-gray-300"
+              }`}
+              href={slide === "accordion" ? "/" : `/${slide}`}
+            >
+              <span>{slide}</span>
             </Link>
           </SwiperSlide>
         ))}
