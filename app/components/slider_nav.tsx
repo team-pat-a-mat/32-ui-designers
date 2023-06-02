@@ -1,14 +1,11 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useState } from "react";
 import Link from "next/link";
 import { Mousewheel } from "swiper";
+import { usePathname } from "next/navigation";
 
 export default function Slider_Nav() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const handleClick = (index: number) => {
-    setActiveIndex(index);
-  };
+  const pathname = usePathname();
 
   const slides = [
     "accordion",
@@ -63,23 +60,28 @@ export default function Slider_Nav() {
           },
         }}
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide
-            className="text-center"
-            key={index}
-            style={{ width: "auto" }}
-          >
-            <Link
-              onClick={() => handleClick(index)}
-              className={`cursor-pointer ${
-                activeIndex === index ? "text-black" : "text-gray-300"
-              }`}
-              href={slide === "accordion" ? "/" : `/${slide}`}
+        {slides.map((slide, index) => {
+          const isCurrentPath =
+            (pathname === "/" && slide === "accordion") ||
+            pathname === `/${slide}`;
+
+          return (
+            <SwiperSlide
+              className="text-center"
+              key={index}
+              style={{ width: "auto" }}
             >
-              <span>{slide}</span>
-            </Link>
-          </SwiperSlide>
-        ))}
+              <Link
+                className={`cursor-pointer ${
+                  isCurrentPath ? "text-black" : "text-gray-300"
+                }`}
+                href={slide === "accordion" ? "/" : `/${slide}`}
+              >
+                <span>{slide}</span>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );
