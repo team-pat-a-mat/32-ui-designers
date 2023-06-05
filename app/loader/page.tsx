@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
+import LoaderComponent from "../components/loader/loader_component";
+
 export default function Loader() {
-  return (
-    <main>
-      <div>Loader</div>
-    </main>
-  );
+  const [loading, setLoading] = useState(true);
+
+  if (loading) return <LoaderComponent />;
+  return <main></main>;
 }
