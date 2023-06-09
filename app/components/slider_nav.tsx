@@ -47,6 +47,7 @@ export default function Slider_Nav() {
       <Swiper
         spaceBetween={10}
         mousewheel={true}
+        speed={200}
         modules={[Mousewheel]}
         breakpoints={{
           320: {
