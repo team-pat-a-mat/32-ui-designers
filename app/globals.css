@@ -5,3 +5,11 @@
 .custom-h {
   height: calc(100vh - 224px);
 }
+
+/* 드래그방지 */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
